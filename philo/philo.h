@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:12:28 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/04 07:33:38 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/04 10:56:58 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,11 @@ typedef struct s_philo
 	int				is_dead;
 	t_time			start_time;
 	t_time			last_eat_time;
+	int				left_fork;
+	int				right_fork;
 	pthread_t 		thread;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t *left_fork;
 	struct s_philo	*next;
 }				t_philo;
-
 
 //utils
 long	ft_atol(const char *s);
@@ -50,6 +49,10 @@ long	ft_atol(const char *s);
 void	ft_init_data(t_data *data, char **argv);
 
 //philo
-void	ft_init_philos(t_data *data, t_philo **root);
+void	ft_init_philos(t_data data, t_philo **root);
+
+//dinner
+void	*ft_dinner_time(void *arg);
+void	ft_dinner_join(t_data data, t_philo *philo);
 
 #endif

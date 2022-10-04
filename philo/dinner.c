@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   dinner.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 16:12:53 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/04 10:59:58 by mcakay           ###   ########.fr       */
+/*   Created: 2022/10/04 10:02:12 by mcakay            #+#    #+#             */
+/*   Updated: 2022/10/04 11:00:03 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+void	*ft_dinner_time(void *arg)
 {
-	t_data			data;
-	t_philo			*root;
+	(void)arg;
+	printf("Yemek\n");
+	return ((void *)0);
+}
 
-	if (argc != 5 && argc != 6)
-		return (1);
-	ft_init_data(&data, argv);
-	ft_init_philos(data, &root);
-	ft_dinner_join(data, root);
-	return (0);
+void	ft_dinner_join(t_data data, t_philo *philo)
+{
+	int	i;
+
+	i = 0;
+	while (i < data.number_of_philosophers)
+	{
+		pthread_join(philo->thread, NULL);
+		philo = philo->next;
+		i++;
+	}
 }
