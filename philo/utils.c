@@ -6,11 +6,11 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:13:22 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/03 01:22:11 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/05 15:33:39 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//convert a string to long int
+//It takes a string and returns the number it represents
 long	ft_atol(const char *s)
 {
 	int		i;

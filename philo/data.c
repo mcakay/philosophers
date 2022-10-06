@@ -6,13 +6,13 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:25:43 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/03 01:22:33 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/05 16:40:42 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-//init data with given arguments
+//It initializes the data structure
 void	ft_init_data(t_data *data, char **argv)
 {
 	data->number_of_philosophers = ft_atol(argv[1]);
