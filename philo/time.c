@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dinner.c                                           :+:      :+:    :+:   */
+/*   time.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:49:23 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/08 15:15:53 by mcakay           ###   ########.fr       */
+/*   Created: 2022/10/07 11:07:36 by mcakay            #+#    #+#             */
+/*   Updated: 2022/10/08 15:13:14 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void *ft_dinner(void *args)
+//It sleeps for a certain amount of time
+void	ft_sleep(int wait_time)
 {
-	t_philo *philo;
+	t_time	time;
 
-	philo = (t_philo *)args;
-	while (1)
-	{
-		ft_check_death(philo);
-		ft_print_status(philo, "has taken a fork");
-		ft_print_status(philo, "has taken a fork");
-		ft_print_status(philo, "is eating");
-		ft_sleep(philo->time_to_eat);
-		philo->last_meal = ft_get_time();
-		ft_print_status(philo, "is sleeping");
-		ft_sleep(philo->time_to_sleep);
-		ft_print_status(philo, "is thinking");
-	}
+	time = ft_get_time();
+	while (ft_get_time() - time < (t_time)wait_time)
+		usleep(100);
+}
+
+//It returns the current time in milliseconds
+t_time	ft_get_time(void)
+{
+	struct timeval		tv;
+	t_time				time;
+
+	gettimeofday(&tv, NULL);
+	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
+	return (time);
 }

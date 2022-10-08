@@ -5,33 +5,36 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 16:13:22 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/05 15:33:39 by mcakay           ###   ########.fr       */
+/*   Created: 2022/10/08 01:04:08 by mcakay            #+#    #+#             */
+/*   Updated: 2022/10/08 03:45:25 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo.h"
+
 //It takes a string and returns the number it represents
-long	ft_atol(const char *s)
+long	ft_atol(const char *str)
 {
 	int		i;
+	long	nb;
 	int		sign;
-	long	num;
 
 	i = 0;
-	num = 0;
+	nb = 0;
 	sign = 1;
-	while (*(s + i) == ' ' || (*(s + i) >= 9 && *(s + i) <= 13))
+	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
+		|| str[i] == '\f' || str[i] == '\r')
 		i++;
-	if (*(s + i) == '-' || *(s + i) == '+')
+	if (str[i] == '-' || str[i] == '+')
 	{
-		if (*(s + i) == '-')
-			sign = -sign;
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-	while (*(s + i) >= '0' && *(s + i) <= '9')
+	while (str[i] >= '0' && str[i] <= '9')
 	{
-		num = (num * 10) + (*(s + i) - 48);
+		nb = nb * 10 + str[i] - '0';
 		i++;
 	}
-	return (num * sign);
+	return (nb * sign);
 }

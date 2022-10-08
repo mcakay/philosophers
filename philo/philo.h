@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 16:12:28 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/06 06:18:11 by mcakay           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -19,45 +7,53 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-typedef long long t_time;
-
-typedef struct s_data
-{
-	int		number_of_philosophers;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		number_of_times_each_philosoper_must_eat;
-}				t_data;
+typedef unsigned long long	t_time;
 
 typedef struct s_philo
 {
 	int				id;
-	int				eat_count;
+	int				philo_nb;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				must_eat;
 	int				is_dead;
-	t_time			start_time;
-	t_time			last_eat_time;
+	int				meals_eaten;
 	int				left_fork;
 	int				right_fork;
-	pthread_t 		thread;
-	struct s_philo	*next;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	lock;
-	t_data			*data;
+	t_time			last_meal;
+	t_time			start_time;
+	pthread_t		thread;
+	pthread_mutex_t	mutex;
+	pthread_mutex_t	death;
+	pthread_mutex_t	mutex_write;
 }				t_philo;
 
-//utils
-long	ft_atol(const char *s);
+//time
+t_time	ft_get_time(void);
+void	ft_sleep(int wait_time);
 
-//data
-void	ft_init_data(t_data *data, char **argv);
-void	ft_init_forks(t_data *data);
+//check
+int		ft_check_args(int argc, char **argv);
 
 //philo
-void	ft_init_philos(t_data *data, t_philo **root);
+void	ft_init_philos(t_philo *philo, int argc, char **argv);
+
+//mutex
+void			ft_init_mutex(t_philo *philo, char **argv);
+pthread_mutex_t	*ft_init_forks_mutex(char **argv);
+
+//utils
+long	ft_atol(const char *str);
+
+//status
+void	ft_print_status(t_philo *philo, char *status);
+void	ft_check_death(t_philo *philo);
 
 //dinner
-void	*ft_dinner_time(void *arg);
-void	ft_join_dinner(t_philo **root);
+void	*ft_dinner(void *args);
+
+//thread
+void	ft_join_threads(t_philo *philo, char **argv);
 
 #endif

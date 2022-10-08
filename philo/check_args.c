@@ -1,32 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dinner.c                                           :+:      :+:    :+:   */
+/*   check_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 23:49:23 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/08 15:15:53 by mcakay           ###   ########.fr       */
+/*   Created: 2022/10/07 23:02:49 by mcakay            #+#    #+#             */
+/*   Updated: 2022/10/08 01:10:56 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void *ft_dinner(void *args)
+//It checks if the arguments are valid
+int	ft_check_args(int argc, char **argv)
 {
-	t_philo *philo;
+	int	i;
+	int	j;
 
-	philo = (t_philo *)args;
-	while (1)
+	i = 1;
+	while (i < argc)
 	{
-		ft_check_death(philo);
-		ft_print_status(philo, "has taken a fork");
-		ft_print_status(philo, "has taken a fork");
-		ft_print_status(philo, "is eating");
-		ft_sleep(philo->time_to_eat);
-		philo->last_meal = ft_get_time();
-		ft_print_status(philo, "is sleeping");
-		ft_sleep(philo->time_to_sleep);
-		ft_print_status(philo, "is thinking");
+		j = 0;
+		while (argv[i][j])
+		{
+			if (argv[i][j] < '0' || argv[i][j] > '9')
+				return (0);
+			j++;
+		}
+		i++;
 	}
+	return (1);
 }
