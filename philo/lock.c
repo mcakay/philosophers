@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   lock.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 11:07:36 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/08 17:23:07 by mcakay           ###   ########.fr       */
+/*   Created: 2022/10/08 17:51:56 by mcakay            #+#    #+#             */
+/*   Updated: 2022/10/08 18:46:21 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-//It sleeps for a certain amount of time
-void	ft_sleep(t_philo *philo, int wait_time)
+void	ft_lock_death(t_philo *philo)
 {
-	t_time	time;
+	int	i;
 
-	time = ft_get_time();
-	while (ft_get_time() - time < (t_time)wait_time)
+	i = 0;
+	while (i < philo->philo_nb)
 	{
-		ft_check_death(philo);
-		usleep(100);
+		pthread_mutex_lock(&philo[i].death);
+		i++;
 	}
 }
 
-//It returns the current time in milliseconds
-t_time	ft_get_time(void)
+void	ft_unlock_death(t_philo *philo)
 {
-	struct timeval		tv;
-	t_time				time;
+	int	i;
 
-	gettimeofday(&tv, NULL);
-	time = tv.tv_sec * 1000 + tv.tv_usec / 1000;
-	return (time);
+	i = 0;
+	while (i < philo->philo_nb)
+	{
+		pthread_mutex_unlock(&philo[i].death);
+		i++;
+	}
 }

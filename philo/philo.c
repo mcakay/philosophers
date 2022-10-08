@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:06:28 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/08 15:22:16 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/08 21:11:28 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_init_philos(t_philo *philo, int argc, char **argv)
 	i = 0;
 	while (i < ft_atol(argv[1]))
 	{
-		philo[i].id = i + 1;
+		philo[i].id = i;
 		philo[i].time_to_die = ft_atol(argv[2]);
 		philo[i].time_to_eat = ft_atol(argv[3]);
 		philo[i].time_to_sleep = ft_atol(argv[4]);
@@ -31,10 +31,9 @@ void	ft_init_philos(t_philo *philo, int argc, char **argv)
 		philo[i].last_meal = ft_get_time();
 		philo[i].start_time = ft_get_time();
 		philo[i].meals_eaten = 0;
-		philo[i].is_dead = 0;
+		philo[i].philo_nb = ft_atol(argv[1]);
 		philo[i].left_fork = i;
 		philo[i].right_fork = (i + 1) % ft_atol(argv[1]);
-		pthread_create(&philo[i].thread, NULL, &ft_dinner, &philo[i]);
 		i++;
 	}
 }

@@ -1,6 +1,6 @@
 NAME = philo
 
-SRCS = main.c time.c philo.c thread.c mutex.c status.c dinner.c check_args.c utils.c
+SRCS = main.c time.c philo.c thread.c mutex.c status.c dinner.c check_args.c utils.c lock.c test.c
 
 CC = gcc
 

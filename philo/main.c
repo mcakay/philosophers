@@ -6,11 +6,13 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:15:01 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/08 15:16:35 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/08 21:29:45 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void mutext_tester(t_philo *list);
 
 int	main(int argc, char **argv)
 {
@@ -24,6 +26,8 @@ int	main(int argc, char **argv)
 	if (!philo)
 		return (3);
 	ft_init_philos(philo, argc, argv);
+	ft_init_mutex(philo, argv);
 	ft_join_threads(philo, argv);
+	//	mutext_tester(philo);
 	return (0);
 }

@@ -17,7 +17,6 @@ typedef struct s_philo
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				must_eat;
-	int				is_dead;
 	int				meals_eaten;
 	int				left_fork;
 	int				right_fork;
@@ -27,11 +26,13 @@ typedef struct s_philo
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	death;
 	pthread_mutex_t	mutex_write;
+	pthread_mutex_t *left_fork_mutex;
+	pthread_mutex_t *right_fork_mutex;
 }				t_philo;
 
 //time
 t_time	ft_get_time(void);
-void	ft_sleep(int wait_time);
+void	ft_sleep(t_philo *philo, int wait_time);
 
 //check
 int		ft_check_args(int argc, char **argv);
@@ -40,11 +41,18 @@ int		ft_check_args(int argc, char **argv);
 void	ft_init_philos(t_philo *philo, int argc, char **argv);
 
 //mutex
+void			ft_init_forks_mutex(t_philo *philo, char **argv);
 void			ft_init_mutex(t_philo *philo, char **argv);
-pthread_mutex_t	*ft_init_forks_mutex(char **argv);
+
+//lock
+void	ft_lock_forks(t_philo *philo);
+void	ft_unlock_forks(t_philo *philo);
+void	ft_lock_death(t_philo *philo);
+void	ft_unlock_death(t_philo *philo);
 
 //utils
 long	ft_atol(const char *str);
+int		ft_strcmp(char *s1, char *s2);
 
 //status
 void	ft_print_status(t_philo *philo, char *status);
