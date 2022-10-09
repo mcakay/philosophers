@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:05:47 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/08 21:27:57 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/09 01:01:36 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,20 @@ void ft_join_threads(t_philo *philo, char **argv)
 	i = 0;
 	while (i < ft_atol(argv[1]))
 	{
-		pthread_create(&philo[i].thread, NULL, &ft_dinner, NULL);
-		pthread_detach(philo[i].thread);
+		pthread_create(&philo[i].thread, NULL, &ft_dinner, &philo[i]);
+		i++;
+		usleep(100);
+	}
+	i = 0;
+	while (i < ft_atol(argv[1]))
+	{
+		pthread_join(philo[i].thread, NULL);
 		i += 2;
 	}
 	i = 1;
 	while (i < ft_atol(argv[1]))
 	{
-		pthread_create(&philo[i].thread, NULL, &ft_dinner, NULL);
-		pthread_detach(philo[i].thread);
+		pthread_join(philo[i].thread, NULL);
 		i += 2;
 	}
 }

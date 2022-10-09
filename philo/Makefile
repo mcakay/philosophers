@@ -1,15 +1,20 @@
 NAME = philo
 
-SRCS = main.c time.c philo.c thread.c mutex.c status.c dinner.c check_args.c utils.c lock.c test.c
+SRCS = main.c time.c philo.c thread.c mutex.c status.c dinner.c utils.c check_args.c
 
 CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -g -pthread
 
+FLAGS_DATARACE = -fsanitize=thread -g
+
 all: $(NAME)
 
 $(NAME): $(SRCS)
 	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
+
+data_race:
+	@$(CC) $(FLAGS_DATARACE) $(SRCS) -o $(NAME)
 
 clean:
 	@rm -rf *.dSYM

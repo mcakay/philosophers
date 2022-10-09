@@ -18,14 +18,12 @@ typedef struct s_philo
 	int				time_to_sleep;
 	int				must_eat;
 	int				meals_eaten;
-	int				left_fork;
-	int				right_fork;
+	int				*is_dead;
 	t_time			last_meal;
 	t_time			start_time;
 	pthread_t		thread;
 	pthread_mutex_t	mutex;
-	pthread_mutex_t	death;
-	pthread_mutex_t	mutex_write;
+	pthread_mutex_t	*death;
 	pthread_mutex_t *left_fork_mutex;
 	pthread_mutex_t *right_fork_mutex;
 }				t_philo;
@@ -43,12 +41,6 @@ void	ft_init_philos(t_philo *philo, int argc, char **argv);
 //mutex
 void			ft_init_forks_mutex(t_philo *philo, char **argv);
 void			ft_init_mutex(t_philo *philo, char **argv);
-
-//lock
-void	ft_lock_forks(t_philo *philo);
-void	ft_unlock_forks(t_philo *philo);
-void	ft_lock_death(t_philo *philo);
-void	ft_unlock_death(t_philo *philo);
 
 //utils
 long	ft_atol(const char *str);

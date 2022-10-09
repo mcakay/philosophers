@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:06:28 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/08 21:11:28 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/09 17:33:38 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ void	ft_init_philos(t_philo *philo, int argc, char **argv)
 		philo[i].start_time = ft_get_time();
 		philo[i].meals_eaten = 0;
 		philo[i].philo_nb = ft_atol(argv[1]);
-		philo[i].left_fork = i;
-		philo[i].right_fork = (i + 1) % ft_atol(argv[1]);
 		i++;
 	}
 }
