@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:05:15 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/09 17:33:41 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/10 19:25:09 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_init_mutex(t_philo *philo, char **argv)
 	int	i;
 	pthread_mutex_t *forks;
 	pthread_mutex_t *death;
+	pthread_mutex_t *print;
 
 	i = 0;
 	forks = malloc(sizeof(pthread_mutex_t) * philo->philo_nb);
@@ -29,12 +30,15 @@ void	ft_init_mutex(t_philo *philo, char **argv)
 	}
 	i = 0;
 	death = malloc(sizeof(pthread_mutex_t));
+	print = malloc(sizeof(pthread_mutex_t));
 	while (i < ft_atol(argv[1]))
 	{
 		pthread_mutex_init(philo[i].left_fork_mutex, NULL);
 		pthread_mutex_init(philo[i].right_fork_mutex, NULL);
 		philo[i].death = death;
-		pthread_mutex_init(philo[i].death, NULL);
+		philo[i].print = print;
 		i++;
 	}
+	pthread_mutex_init(philo->death, NULL);
+	pthread_mutex_init(philo->print, NULL);
 }

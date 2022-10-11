@@ -24,13 +24,14 @@ typedef struct s_philo
 	pthread_t		thread;
 	pthread_mutex_t	mutex;
 	pthread_mutex_t	*death;
+	pthread_mutex_t	*print;
 	pthread_mutex_t *left_fork_mutex;
 	pthread_mutex_t *right_fork_mutex;
 }				t_philo;
 
 //time
 t_time	ft_get_time(void);
-void	ft_sleep(t_philo *philo, int wait_time);
+void	ft_sleep(int wait_time);
 
 //check
 int		ft_check_args(int argc, char **argv);
@@ -47,7 +48,7 @@ long	ft_atol(const char *str);
 int		ft_strcmp(char *s1, char *s2);
 
 //status
-void	ft_print_status(t_philo *philo, char *status);
+int		ft_print_status(t_philo *philo, char *status);
 void	ft_check_death(t_philo *philo);
 
 //dinner

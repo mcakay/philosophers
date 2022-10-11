@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:05:47 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/09 01:01:36 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/11 14:29:19 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,16 +24,6 @@ void ft_join_threads(t_philo *philo, char **argv)
 		i++;
 		usleep(100);
 	}
-	i = 0;
-	while (i < ft_atol(argv[1]))
-	{
-		pthread_join(philo[i].thread, NULL);
-		i += 2;
-	}
-	i = 1;
-	while (i < ft_atol(argv[1]))
-	{
-		pthread_join(philo[i].thread, NULL);
-		i += 2;
-	}
+	while(*philo->is_dead != 1)
+		ft_check_death(philo);
 }

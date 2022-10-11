@@ -13,16 +13,13 @@
 #include "philo.h"
 
 //It sleeps for a certain amount of time
-void	ft_sleep(t_philo *philo, int wait_time)
+void	ft_sleep(int wait_time)
 {
 	t_time	time;
 
 	time = ft_get_time();
 	while (ft_get_time() - time < (t_time)wait_time)
-	{
-		ft_check_death(philo);
 		usleep(100);
-	}
 }
 
 //It returns the current time in milliseconds
