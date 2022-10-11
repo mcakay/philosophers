@@ -6,13 +6,12 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:06:28 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/12 02:38:45 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/12 02:54:34 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-//It initializes the philosophers
 void	ft_init_philos(t_philo *philo, int argc, char **argv)
 {
 	int	is_dead;

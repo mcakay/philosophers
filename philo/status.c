@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:01:28 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/12 02:48:59 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/12 02:54:44 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_finish_serving(t_philo *philo, int *j, int *result)
 	return (0);
 }
 
-//It checks if the philosopher has died
 void	ft_check_death(t_philo *philo)
 {
 	t_time	time;

@@ -6,13 +6,12 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 01:04:08 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/12 02:47:25 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/12 02:54:51 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-//It takes a string and returns the number it represents
 long	ft_atol(const char *str)
 {
 	int		i;
