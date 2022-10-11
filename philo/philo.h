@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/12 01:57:46 by mcakay            #+#    #+#             */
+/*   Updated: 2022/10/12 01:57:48 by mcakay           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -40,7 +52,8 @@ void	ft_init_philos(t_philo *philo, int argc, char **argv);
 
 //mutex
 void			ft_init_forks_mutex(t_philo *philo, char **argv);
-void			ft_init_mutex(t_philo *philo, char **argv);
+void			ft_init_mutex(t_philo *philo, char **argv,
+pthread_mutex_t *forks, pthread_mutex_t *death);
 
 //utils
 long	ft_atol(const char *str);
@@ -55,5 +68,7 @@ void	*ft_dinner(void *args);
 
 //thread
 void	ft_join_threads(t_philo *philo, char **argv);
+
+void	ft_free(t_philo *philo, pthread_mutex_t *forks, pthread_mutex_t *death);
 
 #endif

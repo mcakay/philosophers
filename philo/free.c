@@ -1,38 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mutex.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 00:05:15 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/12 01:57:22 by mcakay           ###   ########.fr       */
+/*   Created: 2022/10/12 01:43:25 by mcakay            #+#    #+#             */
+/*   Updated: 2022/10/12 01:58:06 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-//It initializes the mutexes for each philosopher
-void	ft_init_mutex(t_philo *philo, char **argv,
-	 pthread_mutex_t *forks, pthread_mutex_t *death)
+void	ft_free(t_philo *philo, pthread_mutex_t *forks, pthread_mutex_t *death)
 {
 	int	i;
 
 	i = 0;
 	while (i < philo->philo_nb)
 	{
-		philo[i].left_fork_mutex = &forks[i];
-		philo[i].right_fork_mutex = &forks[(i + 1) % philo->philo_nb];
+		pthread_mutex_destroy(philo[i].left_fork_mutex);
+		pthread_mutex_destroy(philo[i].right_fork_mutex);
 		i++;
 	}
-	i = 0;
-	
-	while (i < ft_atol(argv[1]))
-	{
-		pthread_mutex_init(philo[i].left_fork_mutex, NULL);
-		pthread_mutex_init(philo[i].right_fork_mutex, NULL);
-		philo[i].death = death;
-		i++;
-	}
-	pthread_mutex_init(philo->death, NULL);
+	pthread_mutex_destroy(philo->death);
+	free(forks);
+	free(death);
+	free(philo);
 }
