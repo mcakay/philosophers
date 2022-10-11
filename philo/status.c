@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:01:28 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/11 14:34:06 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/12 01:16:23 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,12 @@ void	ft_check_death(t_philo *philo)
 {
 	t_time	time;
 	int		i;
+	int		j;
+	int		result;
 
-	
 	i = 0;
+	j = 0;
+	result = 0;
 	while (i < philo->philo_nb)
 	{
 		pthread_mutex_lock(philo->death);
@@ -30,10 +33,21 @@ void	ft_check_death(t_philo *philo)
 			*philo->is_dead = 1;
 			break ;
 		}
+		else if (philo->must_eat != -1)
+		{
+			while (j < philo->philo_nb)
+				result += philo[j++].meals_eaten;
+			if (result == philo->philo_nb * philo->must_eat)
+			{
+				*philo->is_dead = 1;
+				break ;
+			}
+		}
 		i++;
 		pthread_mutex_unlock(philo->death);
 	}
 }
+
 
 //It prints the time, the id of the philosopher, and the status of the philosopher
 int	ft_print_status(t_philo *philo, char *status)

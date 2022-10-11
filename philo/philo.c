@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 23:06:28 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/10 03:37:59 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/11 23:41:25 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void	ft_init_philos(t_philo *philo, int argc, char **argv)
 		philo[i].meals_eaten = 0;
 		philo[i].philo_nb = ft_atol(argv[1]);
 		philo[i].is_dead = &is_dead;
+		if (argc == 6)
+			philo[i].must_eat = ft_atol(argv[5]);
+		else
+			philo[i].must_eat = -1;
 		i++;
 	}
+	philo->total_eaten = 0;
 }

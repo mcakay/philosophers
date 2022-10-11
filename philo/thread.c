@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 00:05:47 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/11 14:29:19 by mcakay           ###   ########.fr       */
+/*   Created: 2022/10/08 00:05:47  by mcakay            #+#    #+#             */
+/*   Updated: 2022/10/11 22:13:19 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ void ft_join_threads(t_philo *philo, char **argv)
 		usleep(100);
 	}
 	while(*philo->is_dead != 1)
-		ft_check_death(philo);
+		ft_check_death(philo); 
 }

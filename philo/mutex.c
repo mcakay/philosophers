@@ -6,7 +6,7 @@
 /*   By: mcakay <mcakay@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 00:05:15 by mcakay            #+#    #+#             */
-/*   Updated: 2022/10/10 19:25:09 by mcakay           ###   ########.fr       */
+/*   Updated: 2022/10/11 23:08:57 by mcakay           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void	ft_init_mutex(t_philo *philo, char **argv)
 		pthread_mutex_init(philo[i].left_fork_mutex, NULL);
 		pthread_mutex_init(philo[i].right_fork_mutex, NULL);
 		philo[i].death = death;
-		philo[i].print = print;
 		i++;
 	}
 	pthread_mutex_init(philo->death, NULL);
-	pthread_mutex_init(philo->print, NULL);
 }
